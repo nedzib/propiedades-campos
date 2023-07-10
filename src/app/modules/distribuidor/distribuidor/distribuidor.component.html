@@ -14,8 +14,7 @@
 <!--Incio contenido-->
   <div class="tab-content" id="myTabContent">
     <!--Inicio Generación de Claves-->
-    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">...
-      <h1>inicio</h1>
+    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
       <div class="container overflow-hidden text-center">
         <div class="row gy-5">
             <!--c cuadro números ZP-->
@@ -62,7 +61,7 @@
                     </div>
                 </div>
                 <div class="row"><div class="col">
-                  <button class="btn btn-dark">IMPRIMIR [C]</button>
+                  <button class="btn btn-dark" (click)="guardarArchivoDeTexto()">DESCARGAR [C]</button>
                 </div>
                  <br><br><hr>
                 <div class="container">
@@ -72,7 +71,7 @@
                         </div>
                         <div class="col">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" [checked]="this.cargar_claves" (click)="toggle_check()">
                                 <label class="form-check-label" for="flexSwitchCheckChecked">Cargar claves</label>
                             </div>
                         </div>
@@ -85,7 +84,7 @@
         <div class="row gy-5">
             <div class="col-6">
                 <div class="p-3">
-                    <label for="">CLAVE 1</label>
+                    <label for="" class="mr-2">CLAVE 1</label>
                     <input type="text" placeholder="aqui va clave 1" [value]="this.hash_1">
                 </div>
               </div>
@@ -102,7 +101,6 @@
             <h4>Favor utilizar claves para proteger archivo</h4>
         </div>
       </div>
-      <h1>fin</h1>
     <!--fin Generación de Claves-->
     <!--Inicio Generación de Sombras-->
     <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>

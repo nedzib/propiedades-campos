@@ -22,23 +22,9 @@
             <div class="col-6">
               <div class="p-3">
                 <h4>Elegir secreto (Zp)</h4>
-                <div style="background-color: white; border: 2.5px solid #2c4a52; color: #8e9b97; font-family: 'calibri'; font-size: 24px; height: 300px; margin: 0px 75px 0px 75px; overflow: auto; padding: 10px; text-align: left; white-space:nowrap;">Números Zp  
-                    <div>
-                      <button></button><button></button><button></button><button></button><button></button>
-                      <!--
-                      <div class="fila1"> 1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, </div>
-                      <div class="fila">73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, </div>
-                      <div class="fila1">163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241,</div>
-                      <div class="fila">251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, </div>
-                      <div class="fila1">349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, </div>
-                      <div class="fila">443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547,</div>
-                      <div class="fila1">557, 563, 569, 571, 577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643,</div>
-                      <div class="fila">647, 653, 659, 661, 673, 677, 683, 691, 701, 709, 719, 727, 733, 739, 743, 751,</div>
-                      <div class="fila1">757, 761, 769, 773, 787, 797, 809, 811, 821, 823, 827, 829, 839, 853, 857, 859,</div>
-                      <div class="fila">863, 877, 881, 883, 887, 907, 911, 919, 929, 937, 941, 947, 953, 967, 971, 977,</div>
-                      <div class="fila1">983, 991, 997, 1009, 1013, 1019, 1021, 1031, 1033, 1039, 1049, 1051, 1061, 1063,</div>
-                      <div class="fila">1069, 1087, 1091, 1093, 1097, 1103, 1109, 1117, 1123, 1129, 1151, 1153, 1163,</div>
-                      -->
+                <div class="d-flex flex-wrap" style="background-color: white; border: 2.5px solid #2c4a52; color: #8e9b97; font-family: 'calibri'; font-size: 24px; height: 300px; margin: 0px 75px 0px 75px; overflow: auto; padding: 10px; text-align: left; white-space:break-spaces;">Números Zp
+                    <div *ngFor="let numero of this.array, let i = index" role="button">
+                      <span (click)="set_c(numero)">{{ numero+", " }}</span>
                     </div>
                 </div>
               </div>
@@ -51,30 +37,30 @@
                     <div class="row">
                         <div class="col">
                             <label for="">[C]</label>
-                            <input type="text" placeholder="número seleccionado" id="c">
+                            <input type="text" placeholder="número seleccionado" id="c" [value]="this.valor_c">
                         </div>
                         <div class="col">
-                          <button class="btn btn-dark">CARGAR</button>
+                          <button class="btn btn-dark" (click)="cargar()">CARGAR</button>
                         </div>
                     </div>
                     <br>
-                </div>  
+                </div>
                 <div class="container">
                     <div class="row">
                         <div class="col">
                             <label for="">Enmascarado 1</label>
-                            <input type="text" placeholder="aqui va e1">
+                            <input type="text" placeholder="aqui va e1" [value]="this.numero_1">
                             <p id="e1"></p>
-                        </div> 
-                    </div>  
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col">
                             <label for="">Enmascarado 2</label>
-                            <input type="text" placeholder="aqui va e2">
+                            <input type="text" placeholder="aqui va e2" [value]="this.numero_2">
                             <p id="e2"></p>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <div class="row"><div class="col">
                   <button class="btn btn-dark">IMPRIMIR [C]</button>
                 </div>
@@ -82,7 +68,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <button class="btn btn-dark">GENERAR CLAVES</button> 
+                            <button class="btn btn-dark" (click)="generarHash()">GENERAR CLAVES</button>
                         </div>
                         <div class="col">
                             <div class="form-check form-switch">
@@ -90,27 +76,27 @@
                                 <label class="form-check-label" for="flexSwitchCheckChecked">Cargar claves</label>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
               </div>
-            </div>    
+            </div>
         </div>
         </div>
         <div class="row gy-5">
             <div class="col-6">
                 <div class="p-3">
                     <label for="">CLAVE 1</label>
-                    <input type="text" placeholder="aqui va clave 1">
+                    <input type="text" placeholder="aqui va clave 1" [value]="this.hash_1">
                 </div>
               </div>
 
             <div class="col-6">
                 <div class="p-3">
                     <label for="">CLAVE 2</label>
-                    <input type="text" placeholder="aqui va clave 2">
+                    <input type="text" placeholder="aqui va clave 2" [value]="this.hash_2">
                 </div>
               </div>
-              
+
         </div>
         <div class="row gy-5">
             <h4>Favor utilizar claves para proteger archivo</h4>

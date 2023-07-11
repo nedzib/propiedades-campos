@@ -138,19 +138,19 @@
       <div class="container text-center">
         <div class="row align-items-end">
           <div class="col">
-            <input type="text" placeholder="polinomio">
+            <input type="text" placeholder="polinomio" [value]="polinomio(1)">
           </div>
           <div class="col">
-            <input type="text"placeholder="polinomio">
+            <input type="text" placeholder="polinomio" [value]="polinomio(2)">
           </div>
           <div class="col">
-            <input type="text" placeholder="polinomio">
+            <input type="text" placeholder="polinomio" [value]="polinomio(3)">
           </div>
           <div class="col">
-            <input type="text" placeholder="polinomio">
+            <input type="text" placeholder="polinomio" [value]="polinomio(4)">
           </div>
           <div class="col">
-            <input type="text" placeholder="polinomio">
+            <input type="text" placeholder="polinomio" [value]="polinomio(5)">
           </div>
         </div>
       </div>
@@ -180,19 +180,19 @@
       <div class="container text-center">
         <div class="row align-items-end">
           <div class="col">
-            <input type="text" placeholder="polinomio^K">
+            <input type="text" placeholder="polinomio^K" [value]="polinomio_elevado(1)">
           </div>
           <div class="col">
-            <input type="text"placeholder="polinomio^K">
+            <input type="text" placeholder="polinomio^K" [value]="polinomio_elevado(2)">
           </div>
           <div class="col">
-            <input type="text" placeholder="polinomio^K">
+            <input type="text" placeholder="polinomio^K" [value]="polinomio_elevado(3)">
           </div>
           <div class="col">
-            <input type="text" placeholder="polinomio^K">
+            <input type="text" placeholder="polinomio^K" [value]="polinomio_elevado(4)">
           </div>
           <div class="col">
-            <input type="text" placeholder="polinomio^K">
+            <input type="text" placeholder="polinomio^K" [value]="polinomio_elevado(5)">
           </div>
         </div>
       </div>
@@ -201,18 +201,18 @@
         <div class="row gy-5">
           <div class="col-6">
               <div class="p-3">
-                  <button class="btn btn-dark">PUBLICAR</button>
+                  <button class="btn btn-dark" (click)="toggle_numeros()">PUBLICAR</button>
               </div>
           </div>
-  
+
           <div class="col-6">
               <div class="p-3">
-                  <button class="btn btn-dark">IMPRIMIR</button>
+                  <button class="btn btn-dark" (click)="guardarSimbolosTexto()">IMPRIMIR</button>
               </div>
           </div>
         </div>
       </div>
-      
+
     </div>
     <!--fin Generación de Sombras-->
     <!--Inicio Cifrado-->

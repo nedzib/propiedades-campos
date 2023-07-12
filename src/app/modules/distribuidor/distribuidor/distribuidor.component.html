@@ -118,85 +118,38 @@
         <div class="row align-items-end">
           <div class="col">
             <img src="https://media.discordapp.net/attachments/941137936093675593/1128343423737405440/image.png?width=200&height=200"  alt="triangulo">
-          </div>
-          <div class="col">
-            <img src="https://media.discordapp.net/attachments/941137936093675593/1128343506725904524/image.png?width=200&height=200" alt="cuadrado">
-          </div>
-          <div class="col">
-            <img src="https://media.discordapp.net/attachments/941137936093675593/1128343767829725285/image.png?width=200&height=200" alt="circulo">
-          </div>
-          <div class="col">
-            <img src="https://media.discordapp.net/attachments/941137936093675593/1128343848674930819/image.png?width=200&height=200" alt="hexagono">
-          </div>
-          <div class="col">
-            <img src="https://media.discordapp.net/attachments/941137936093675593/1128343921110564894/image.png?width=200&height=200" alt="cilindro">
-          </div>
-        </div>
-      </div>
-      <!--end figuras-->
-      <!--polinomio-->
-      <div class="container text-center">
-        <div class="row align-items-end">
-          <div class="col">
             <input type="text" placeholder="polinomio" [value]="polinomio(1)">
-          </div>
-          <div class="col">
-            <input type="text" placeholder="polinomio" [value]="polinomio(2)">
-          </div>
-          <div class="col">
-            <input type="text" placeholder="polinomio" [value]="polinomio(3)">
-          </div>
-          <div class="col">
-            <input type="text" placeholder="polinomio" [value]="polinomio(4)">
-          </div>
-          <div class="col">
-            <input type="text" placeholder="polinomio" [value]="polinomio(5)">
-          </div>
-        </div>
-      </div>
-      <!--end polinomio-->
-      <!--polinomio elevado label-->
-      <div class="container text-center" placeholder="polinomio">
-        <div class="row align-items-end">
-          <div class="col">
-            <label for="">[]^k</label>
-          </div>
-          <div class="col">
-            <label for="">[]^k</label>
-          </div>
-          <div class="col">
-            <label for="">[]^k</label>
-          </div>
-          <div class="col">
-            <label for="">[]^k</label>
-          </div>
-          <div class="col">
-            <label for="">[]^k</label>
-          </div>
-        </div>
-      </div>
-      <!--end polinomio elevado-->
-      <!--polinomio elevado-->
-      <div class="container text-center">
-        <div class="row align-items-end">
-          <div class="col">
+            <div><label for="">[]^k</label></div>
             <input type="text" placeholder="polinomio^K" [value]="polinomio_elevado(1)">
           </div>
           <div class="col">
+            <img src="https://media.discordapp.net/attachments/941137936093675593/1128343506725904524/image.png?width=200&height=200" alt="cuadrado">
+            <input type="text" placeholder="polinomio" [value]="polinomio(2)">
+            <div><label for="">[]^k</label></div>
             <input type="text" placeholder="polinomio^K" [value]="polinomio_elevado(2)">
           </div>
           <div class="col">
+            <img src="https://media.discordapp.net/attachments/941137936093675593/1128343767829725285/image.png?width=200&height=200" alt="circulo">
+            <input type="text" placeholder="polinomio" [value]="polinomio(3)">
+            <div><label for="">[]^k</label></div>
             <input type="text" placeholder="polinomio^K" [value]="polinomio_elevado(3)">
           </div>
           <div class="col">
+            <img src="https://media.discordapp.net/attachments/941137936093675593/1128343848674930819/image.png?width=200&height=200" alt="hexagono">
+            <input type="text" placeholder="polinomio" [value]="polinomio(4)">
+            <div><label for="">[]^k</label></div>
             <input type="text" placeholder="polinomio^K" [value]="polinomio_elevado(4)">
           </div>
           <div class="col">
-            <input type="text" placeholder="polinomio^K" [value]="polinomio_elevado(5)">
+            <img src="https://media.discordapp.net/attachments/941137936093675593/1128343921110564894/image.png?width=200&height=200" alt="cilindro">
+            <input type="text" placeholder="polinomio" [value]="polinomio(5)">
+            <div><label for="">[]^k</label></div>
+            <input type="text" placeholder="polinomio^K" [value]="polinomio_elevado(4)">
           </div>
         </div>
       </div>
-      <!--end polinomio elevado-->
+      <!--end figuras-->   
+      <!--botones-->  
       <div class="container text-center">
         <div class="row gy-5">
           <div class="col-6">
@@ -212,13 +165,44 @@
           </div>
         </div>
       </div>
-
+      <!--End botones-->
     </div>
     <!--fin Generación de Sombras-->
     <!--Inicio Cifrado-->
     <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-
+      <div class="container overflow-hidden text-center">
+        <div class="row gy-5">
+          <h4>Cifrado y protección de archivo</h4>
+        </div>
+        <div class="row gy-5">
+          <div class="col-6">
+            <div class="p-3">
+              <h4>Mensaje</h4>
+              <input type="text" placeholder="Aquí puede escribir su mensaje" style="background-color: white; border: 2.5px solid #2c4a52; color: #8e9b97; font-family: 'calibri'; font-size: 24px; width: 120%; height: 100px; margin: 0px 75px 0px 75px; overflow: auto; padding: 10px; text-align: left; white-space:nowrap;">
+            </div>
+          </div>
+          <div class="col-6 d-flex align-items-end justify-content-end">
+            <div class="p-3">
+              <button class="btn btn-dark">CIFRAR</button>
+            </div>
+          </div>
+        </div>
+        <div class="row gy-5">
+          <div class="col-6">
+            <div class="p-3">
+              <h4>Mensaje cifrado</h4>
+              <input type="text" style="background-color: white; border: 2.5px solid #2c4a52; color: #8e9b97; font-family: 'calibri'; font-size: 24px; width: 120%; height: 100px; margin: 0px 75px 0px 75px; overflow: auto; padding: 10px; text-align: left; white-space:nowrap;" placeholder="Mensaje cifrado">
+            </div>
+          </div>
+          <div class="col-6 d-flex align-items-end justify-content-end">
+            <div class="p-3">
+              <button class="btn btn-dark">EXPORTAR</button>
+            </div>
+          </div>
+        </div> 
+        <div class="row gy-5">
+          <h4>Favor utilizar claves para proteger archivo</h4>
+        </div>
+      </div>
     </div>
     <!--fin Cifrado-->
-  </div>
-<!--Fin contenido-->

@@ -19,42 +19,43 @@
             <div class="col">
               <img src="https://media.discordapp.net/attachments/941137936093675593/1128343423737405440/image.png?width=200&height=200"  alt="triangulo">
               <div><label for="">[]^k</label></div>
-              <input type="text" placeholder="polinomio" >
+              <input #triangulo type="text" placeholder="polinomio" value="270840023" >
             </div>
             <div class="col">
               <img src="https://media.discordapp.net/attachments/941137936093675593/1128343506725904524/image.png?width=200&height=200" alt="cuadrado">
               <div><label for="">[]^k</label></div>
-              <input type="text" placeholder="polinomio" >
+              <input #cuadrado type="text" placeholder="polinomio" value="2379270375">
             </div>
             <div class="col">
               <img src="https://media.discordapp.net/attachments/941137936093675593/1128343767829725285/image.png?width=200&height=200" alt="circulo">
               <div><label for="">[]^k</label></div>
-              <input type="text" placeholder="polinomio">
+              <input #circulo type="text" placeholder="polinomio" value="12503322161">
             </div>
             <div class="col">
               <img src="https://media.discordapp.net/attachments/941137936093675593/1128343848674930819/image.png?width=200&height=200" alt="hexagono">
               <div><label for="">[]^k</label></div>
-              <input type="text" placeholder="polinomio">
+              <input #hexagono type="text" placeholder="polinomio">
             </div>
             <div class="col">
               <img src="https://media.discordapp.net/attachments/941137936093675593/1128343921110564894/image.png?width=200&height=200" alt="cilindro">
               <div><label for="">[]^k</label></div>
-              <input type="text" placeholder="polinomio">
+              <input #cilindro type="text" placeholder="polinomio">
             </div>
           </div>
         </div> <hr>
-        <!--end figuras-->   
-        <!--boton recuperar c-->  
+        <!--end figuras-->
+        <!--boton recuperar c-->
         <div class="container text-center">
           <div class="row gy-5">
             <div class="col-6">
                 <div class="p-3">
-                    <button class="btn btn-dark">Recuperar Secreto [C]</button>
+                    <button class="btn btn-dark" (click)="recuperar_secreto()">Recuperar Secreto [C]</button>
                 </div>
             </div>
             <div class="col-6">
               <div class="p-3">
-                  <input type="text" placeholder="aquie se recupera c">
+                <label for="">aqui se recupera c</label><br>
+                  <input type="text" placeholder="aqui se recupera c" [value]="this.valor_c">
               </div>
             </div>
           </div>
@@ -65,17 +66,17 @@
           <div class="row gy-5">
             <div class="col">
                 <div class="p-3">
-                    <button class="btn btn-dark">Recuperar claves de acceso</button>
+                    <button class="btn btn-dark" (click)="recuperar_claves()">Recuperar claves de acceso</button>
                 </div>
             </div>
           </div>
           <div class="row gy-5">
             <div><label for="">Clave 1 [SHA(2)-256]</label></div>
-            <input type="text">
+            <input type="text" [value]="this.hash_1">
           </div>
           <div class="row gy-5">
             <div><label for="">Clave 2 [SHA(2)-256]</label></div>
-            <input type="text">
+            <input type="text" [value]="this.hash_2">
           </div> <br>
           <div class="row gy-5">
             <h4>Nota:favor utilizar claves para apertura del archivo.</h4>

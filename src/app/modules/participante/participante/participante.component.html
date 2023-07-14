@@ -19,27 +19,27 @@
             <div class="col">
               <img src="https://media.discordapp.net/attachments/941137936093675593/1128343423737405440/image.png?width=200&height=200"  alt="triangulo">
               <div><label for="">[]^k</label></div>
-              <input #triangulo type="text" placeholder="polinomio" value="270840023" >
+              <input #triangulo class='form-control'  type="text" placeholder="polinomio" value="270840023" >
             </div>
             <div class="col">
               <img src="https://media.discordapp.net/attachments/941137936093675593/1128343506725904524/image.png?width=200&height=200" alt="cuadrado">
               <div><label for="">[]^k</label></div>
-              <input #cuadrado type="text" placeholder="polinomio" value="2379270375">
+              <input #cuadrado class='form-control' type="text" placeholder="polinomio" value="2379270375">
             </div>
             <div class="col">
               <img src="https://media.discordapp.net/attachments/941137936093675593/1128343767829725285/image.png?width=200&height=200" alt="circulo">
               <div><label for="">[]^k</label></div>
-              <input #circulo type="text" placeholder="polinomio" value="12503322161">
+              <input #circulo class='form-control' type="text" placeholder="polinomio" value="12503322161">
             </div>
             <div class="col">
               <img src="https://media.discordapp.net/attachments/941137936093675593/1128343848674930819/image.png?width=200&height=200" alt="hexagono">
               <div><label for="">[]^k</label></div>
-              <input #hexagono type="text" placeholder="polinomio">
+              <input #hexagono class='form-control' type="text" placeholder="polinomio">
             </div>
             <div class="col">
               <img src="https://media.discordapp.net/attachments/941137936093675593/1128343921110564894/image.png?width=200&height=200" alt="cilindro">
               <div><label for="">[]^k</label></div>
-              <input #cilindro type="text" placeholder="polinomio">
+              <input #cilindro class='form-control' type="text" placeholder="polinomio">
             </div>
           </div>
         </div> <hr>
@@ -54,8 +54,8 @@
             </div>
             <div class="col-6">
               <div class="p-3">
-                <label for="">aqui se recupera c</label><br>
-                  <input type="text" placeholder="aqui se recupera c" [value]="this.valor_c">
+                <label for="col-form-label">aqui se recupera c</label><br>
+                  <input type="text" class='form-control' placeholder="aqui se recupera c" [value]="this.valor_c">
               </div>
             </div>
           </div>
@@ -70,16 +70,16 @@
                 </div>
             </div>
           </div>
-          <div class="row gy-5">
+          <div class="row mt-3">
             <div><label for="">Clave 1 [SHA(2)-256]</label></div>
-            <input type="text" [value]="this.hash_1">
+            <input type="text" class='form-control'  [value]="this.hash_1">
           </div>
-          <div class="row gy-5">
+          <div class="row mt-3">
             <div><label for="">Clave 2 [SHA(2)-256]</label></div>
-            <input type="text" [value]="this.hash_2">
+            <input type="text" class='form-control'  [value]="this.hash_2">
           </div> <br>
-          <div class="row gy-5">
-            <h4>Nota:favor utilizar claves para apertura del archivo.</h4>
+          <div class="row mt-3">
+            <h4>Nota: favor utilizar claves para apertura del archivo.</h4>
           </div>
         </div>
         <!--end boton recuperar claves-->

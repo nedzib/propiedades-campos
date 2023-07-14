@@ -82,39 +82,111 @@ export class ParticipanteComponent {
   }
 
   operacion_124(numero_1: number, numero_2: number, numero_3: number) {
-    // Handle case 124 with the given parameters
+    let q1 = [numero_1*Math.pow(1, 2)/3, numero_1*(-2)*1, numero_1*(8/3)]
+    let q2 = [numero_2*Math.pow(1, 2)/6, numero_2*(-1/2) , numero_2*(1/3)]
+    let q3 = [numero_3*Math.pow(1, 2)/6, numero_3*(-1/2)*1, numero_3*(1/3)]
+
+    let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
+
+    this.valor_a = q4[0]
+    this.valor_b = q4[1]
+    this.valor_c = q4[2]
   }
 
   operacion_125(numero_1: number, numero_2: number, numero_3: number) {
-    // Handle case 125 with the given parameters
+    let q1 = [numero_1*Math.pow(1, 2)/4, numero_1*(-7/4)*1, numero_1*(5/2)]
+    let q2 = [numero_2*Math.pow(1, 2)*(-1/3), numero_2*2*1 , numero_2*(-5/3)]
+    let q3 = [numero_3*Math.pow(1, 2)/12, numero_3*(-1/4)*1, numero_3*(1/6)]
+
+    let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
+
+    this.valor_a = q4[0]
+    this.valor_b = q4[1]
+    this.valor_c = q4[2]
   }
 
   operacion_134(numero_1: number, numero_2: number, numero_3: number) {
-    // Handle case 134 with the given parameters
+    let q1 = [numero_1*Math.pow(1, 2)/6, numero_1*(-7/6)*1, numero_1*2]
+    let q2 = [numero_2*Math.pow(1, 2)*(-1/2), numero_2*(5/2)*1 , numero_2*-2]
+    let q3 = [numero_3*Math.pow(1, 2)/3, numero_3*(-4/3)*1, numero_3*1]
+
+    let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
+
+    this.valor_a = q4[0]
+    this.valor_b = q4[1]
+    this.valor_c = q4[2]
   }
 
   operacion_135(numero_1: number, numero_2: number, numero_3: number) {
-    // Handle case 135 with the given parameters
+    let q1 = [numero_1*Math.pow(1, 2)/8, numero_1*(-1)*1, numero_1*(15/8)]
+    let q2 = [numero_2*Math.pow(1, 2)*(-1/4), numero_2*(3/2)*1 , numero_2*(-5/4)]
+    let q3 = [numero_3*Math.pow(1, 2)/8, numero_3*(-1/2)*1, numero_3*(3/8)]
+
+    let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
+
+    this.valor_a = q4[0]
+    this.valor_b = q4[1]
+    this.valor_c = q4[2]
   }
 
   operacion_145(numero_1: number, numero_2: number, numero_3: number) {
-    // Handle case 145 with the given parameters
+    let q1 = [numero_1*Math.pow(1, 2)/12, numero_1*(-3/4)*1, numero_1*(5/3)]
+    let q2 = [numero_2*Math.pow(1, 2)*(-1/3), numero_2*2*1 , numero_2*(-5/3)]
+    let q3 = [numero_3*Math.pow(1, 2)/4, numero_3*(-5/4)*1, numero_3*1]
+
+    let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
+
+    this.valor_a = q4[0]
+    this.valor_b = q4[1]
+    this.valor_c = q4[2]
   }
 
   operacion_234(numero_1: number, numero_2: number, numero_3: number) {
-    // Handle case 234 with the given parameters
+    let q1 = [numero_1*Math.pow(1, 2)/2, numero_1*(-7/2)*1, numero_1*6]
+    let q2 = [numero_2*Math.pow(1, 2)*-1, numero_2*6*1 , numero_2*-8]
+    let q3 = [numero_3*Math.pow(1, 2)/2, numero_3*(-5/2)*1, numero_3*3]
+
+    let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
+
+    this.valor_a = q4[0]
+    this.valor_b = q4[1]
+    this.valor_c = q4[2]
   }
 
   operacion_235(numero_1: number, numero_2: number, numero_3: number) {
-    // Handle case 235 with the given parameters
+    let q1 = [numero_1*Math.pow(1, 2)/3, numero_1*(-8/3)*1, numero_1*5]
+    let q2 = [numero_2*Math.pow(1, 2)*(-1/2), numero_2*(7/2)*1 , numero_2*-5]
+    let q3 = [numero_3*Math.pow(1, 2)/6, numero_3*(-5/6)*1, numero_3*1]
+
+    let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
+
+    this.valor_a = q4[0]
+    this.valor_b = q4[1]
+    this.valor_c = q4[2]
   }
 
   operacion_245(numero_1: number, numero_2: number, numero_3: number) {
-    // Handle case 245 with the given parameters
+    let q1 = [numero_1*Math.pow(1, 2)/6, numero_1*(-3/2)*1, numero_1*(10/3)]
+    let q2 = [numero_2*Math.pow(1, 2)*(-1/2), numero_2*(7/2)*1 , numero_2*-5]
+    let q3 = [numero_3*Math.pow(1, 2)/3, numero_3*(-2)*1, numero_3*(8/3)]
+
+    let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
+
+    this.valor_a = q4[0]
+    this.valor_b = q4[1]
+    this.valor_c = q4[2]
   }
 
   operacion_345(numero_1: number, numero_2: number, numero_3: number) {
-    // Handle case 345 with the given parameters
+    let q1 = [numero_1*Math.pow(1, 2)/2, numero_1*(-9/2)*1, numero_1*10]
+    let q2 = [numero_2*Math.pow(1, 2)*-1, numero_2*8*1 , numero_2*-15]
+    let q3 = [numero_3*Math.pow(1, 2)/2, numero_3*(-7/2)*1, numero_3*6]
+
+    let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
+
+    this.valor_a = q4[0]
+    this.valor_b = q4[1]
+    this.valor_c = q4[2]
   }
 
   entradas() {

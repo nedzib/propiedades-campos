@@ -110,7 +110,7 @@ export class DistribuidorComponent {
       }
     }
     else {
-      while (numero >= 38) {
+      while (numero > 38) {
         numero -= 38
       }
     }

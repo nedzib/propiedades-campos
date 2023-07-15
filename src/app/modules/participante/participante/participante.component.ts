@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ElementRef, ViewChild} from '@angular/core';
 import { Hash } from 'crypto';
+import { alfabeto } from './ascii_imagenes';
 
 @Component({
   selector: 'app-participante',
@@ -15,12 +16,123 @@ export class ParticipanteComponent {
   @ViewChild('hexagono') hexagono!: ElementRef;
   @ViewChild('cilindro') cilindro!: ElementRef;
 
+  @ViewChild('texto_sin') texto_sin!: ElementRef;
+  @ViewChild('texto_original') texto_original!: ElementRef;
+
   valor_a: number = 0
   valor_b: number = 0
   valor_c: number = 0
 
   hash_1: string = ""
   hash_2: string = ""
+
+  texto_decifrado: string = ''
+
+  exportar_mensaje() {
+    const a = document.createElement("a");
+    const archivo = new Blob([this.texto_original.nativeElement.value.toString()], { type: 'text/plain' });
+    const url = URL.createObjectURL(archivo);
+    a.href = url;
+    a.download = "mensaje_original.txt";
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  decifrar_mensaje() {
+    console.log(this.valor_a, this.valor_b, this.valor_c)
+    return this.valor_a > this.valor_b ? this.decifrar_mensaje_a_mayor() : this.decifrar_mensaje_b_mayor()
+  }
+
+  texto_sin_decifrar() {
+    return this.texto_sin.nativeElement.value
+  }
+
+  decifrar_mensaje_a_mayor() {
+    let texto_en_numeros: any = []
+    this.texto_sin_decifrar().split('').forEach((element: any) => {
+      texto_en_numeros.push(alfabeto[element])
+    });
+
+    let digitos = this.sumar_digitos()
+    let ab = this.reducir_numero(digitos[0] + digitos[1])
+    let c = this.reducir_numero(digitos[2])
+
+    texto_en_numeros.map((element: any, index: any) => {
+      texto_en_numeros[index] = this.reducir_numero(element - ab -c)
+    })
+
+    this.texto_decifrado = this.mod38_a_texto(texto_en_numeros)
+  }
+
+  decifrar_mensaje_b_mayor() {
+    let texto_en_numeros: any = []
+    this.texto_sin_decifrar().split('').forEach((element: any) => {
+      texto_en_numeros.push(alfabeto[element])
+    });
+
+    console.log(texto_en_numeros)
+
+    let digitos = this.sumar_digitos()
+    let ab = this.reducir_numero(digitos[0] + digitos[1])
+    let c = this.reducir_numero(digitos[2])
+
+    texto_en_numeros.map((element: any, index: any) => {
+      console.log(element, ab, c)
+      texto_en_numeros[index] = this.reducir_numero(this.reducir_numero(element + ab) + c)
+    })
+
+    console.log(texto_en_numeros)
+
+    this.texto_decifrado = this.mod38_a_texto(texto_en_numeros)
+  }
+
+  mod38_a_texto(texto: any) {
+    let respuesta = ''
+    for (var i = 0; i < texto.length; i++) {
+      respuesta += Object.keys(alfabeto).find(key => alfabeto[key] === texto[i])
+    }
+    return respuesta
+  }
+
+  sumar_digitos() {
+    let nuevo_valor_a = this.valor_a
+            .toString()
+            .split('')
+            .map(Number)
+            .reduce(function (a, b) {
+                return a + b;
+            }, 0);
+    let nuevo_valor_b = this.valor_b
+            .toString()
+            .split('')
+            .map(Number)
+            .reduce(function (a, b) {
+                return a + b;
+            }, 0);
+    let nuevo_valor_c = this.valor_c
+            .toString()
+            .split('')
+            .map(Number)
+            .reduce(function (a, b) {
+                return a + b;
+            }, 0);
+    return [nuevo_valor_a, nuevo_valor_b, nuevo_valor_c]
+  }
+
+  reducir_numero(valor: number) {
+    let numero = valor
+    if (numero <= 0){
+      while (numero <= 0) {
+        numero += 38
+      }
+    }
+    else {
+      while (numero > 38) {
+        numero -= 38
+      }
+    }
+    return numero
+  }
 
   recuperar_secreto() {
     let numeros_entrada: any = this.entradas()

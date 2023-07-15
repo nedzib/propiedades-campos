@@ -6,7 +6,7 @@
       <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Descifrado</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Ayuda</button>
     </li>
   </ul>
   <div class="tab-content" id="myTabContent">
@@ -19,17 +19,17 @@
             <div class="col">
               <img src="https://media.discordapp.net/attachments/941137936093675593/1128343423737405440/image.png?width=200&height=200"  alt="triangulo">
               <div><label for="">[]^k</label></div>
-              <input #triangulo class='form-control'  type="text" placeholder="polinomio" value="270840023" >
+              <input #triangulo class='form-control'  type="text" placeholder="polinomio">
             </div>
             <div class="col">
               <img src="https://media.discordapp.net/attachments/941137936093675593/1128343506725904524/image.png?width=200&height=200" alt="cuadrado">
               <div><label for="">[]^k</label></div>
-              <input #cuadrado class='form-control' type="text" placeholder="polinomio" value="2379270375">
+              <input #cuadrado class='form-control' type="text" placeholder="polinomio">
             </div>
             <div class="col">
               <img src="https://media.discordapp.net/attachments/941137936093675593/1128343767829725285/image.png?width=200&height=200" alt="circulo">
               <div><label for="">[]^k</label></div>
-              <input #circulo class='form-control' type="text" placeholder="polinomio" value="12503322161">
+              <input #circulo class='form-control' type="text" placeholder="polinomio">
             </div>
             <div class="col">
               <img src="https://media.discordapp.net/attachments/941137936093675593/1128343848674930819/image.png?width=200&height=200" alt="hexagono">
@@ -87,8 +87,8 @@
     </div>
     <!--Fin Recuperación de Claves-->
     <!--Descifrado-->
-    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...
-      <div class="container overflow-hidden text-center">
+    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+      <div class="container overflow-hidden text-center" style="margin-top: 7rem; margin-bottom: 7rem;">
         <div class="row gy-5">
           <h4>Decifrado del mensaje</h4>
         </div>
@@ -101,7 +101,7 @@
           </div>
           <div class="col-6 d-flex align-items-end justify-content-end">
             <div class="p-3">
-              <button class="btn btn-dark">DECIFRAR</button>
+              <button class="btn btn-dark" (click)="decifrar_mensaje()">DECIFRAR</button>
             </div>
           </div>
         </div>
@@ -109,12 +109,12 @@
           <div class="col-6">
             <div class="p-3">
               <h4>Mensaje Original</h4>
-              <input type="text"  style="background-color: white; border: 2.5px solid #2c4a52; color: #8e9b97; font-family: 'calibri'; font-size: 24px; width: 120%; height: 100px; margin: 0px 75px 0px 75px; overflow: auto; padding: 10px; text-align: left; white-space:nowrap;" placeholder="Mensaje original">
+              <input #texto_original type="text" [value]="this.texto_decifrado" style="background-color: white; border: 2.5px solid #2c4a52; color: #8e9b97; font-family: 'calibri'; font-size: 24px; width: 120%; height: 100px; margin: 0px 75px 0px 75px; overflow: auto; padding: 10px; text-align: left; white-space:nowrap;" placeholder="Mensaje original">
             </div>
           </div>
           <div class="col-6 d-flex align-items-end justify-content-end">
             <div class="p-3">
-              <button class="btn btn-dark ">EXPORTAR</button>
+              <button class="btn btn-dark" (click)="exportar_mensaje()">EXPORTAR</button>
             </div>
           </div>
         </div>
@@ -122,9 +122,9 @@
     </div>
     <!--fin Descifrado-->
     <!---->
-    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...
-      <object data="assets/manual.pdf" type="application/pdf" width="100%" height="500px">
-        <p>Unable to display PDF file. <a href="manual.pdf">Download</a> instead.</p>
+    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+      <object data="assets/manual_participante.pdf" type="application/pdf" width="100%" height="1000px">
+        <p>Unable to display PDF file. <a href="manual_participante.pdf">Download</a> instead.</p>
       </object>
     </div>
     <!---->

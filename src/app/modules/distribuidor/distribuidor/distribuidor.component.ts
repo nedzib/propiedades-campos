@@ -10,9 +10,10 @@ import { ElementRef, ViewChild} from '@angular/core';
 })
 export class DistribuidorComponent {
 
-  // Ejercicio 1
+  // Ejercicio 1 pantalla generacion de claves 
 
-  array = this.primeFactorsTo(9973)
+  array = this.primeFactorsTo(999983) 
+
   valor_a: number = 0
   valor_b: number = 0
   valor_c: number = 0
@@ -116,7 +117,8 @@ export class DistribuidorComponent {
     }
     return numero
   }
-
+// ejercicio 2 creacion del polinomio donde la variable valor corresponde a x 
+// los valores para evaluar x han sido asignados en el html
   polinomio(valor: number) {
     return this.mostrar_numeros ? this.valor_a * Math.pow(valor, 2) + this.valor_b * valor + this.valor_c : ''
   }
@@ -124,7 +126,7 @@ export class DistribuidorComponent {
   polinomio_elevado(valor: number) {
     return this.mostrar_numeros ? Math.pow(Number(this.polinomio(valor)), 3) : ''
   }
-
+// ejercicio 1 -- enmascaramiento de A y B
   cargar() {
     let num_1 = this.seleccionarAlAzar()
     let num_2 = this.seleccionarAlAzar()
@@ -143,7 +145,7 @@ export class DistribuidorComponent {
   seleccionarAlAzar(){
     return this.array[Math.floor(Math.random()* this.array.length)]
   }
-
+// metodo para generar hash con sha-256 ejercicio1
   generarHash(){
     this.hash_1 = this.hashString(this.numero_1)
     this.hash_2 = this.hashString(this.numero_2)
@@ -210,7 +212,7 @@ export class DistribuidorComponent {
       URL.revokeObjectURL(url);
     }
   }
-
+// libreria para generar hash ejercicio1
   hashString(str: number): string {
     const sha256 = require('crypto-js/sha256');
     return sha256(str.toString()).toString();

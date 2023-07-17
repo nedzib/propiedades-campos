@@ -185,6 +185,7 @@ export class ParticipanteComponent {
     let q1 = [numero_1*Math.pow(1, 2)/2, numero_1*(-5/2)*1, numero_1*3]
     let q2 = [numero_2*Math.pow(1, 2)*-1, numero_2*4*1 , numero_2*-3]
     let q3 = [numero_3*Math.pow(1, 2)/2, numero_3*(-3/2)*1, numero_3*1]
+    console.log(numero_1,numero_2,numero_3)
 
     let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
 
@@ -195,8 +196,9 @@ export class ParticipanteComponent {
 
   operacion_124(numero_1: number, numero_2: number, numero_3: number) {
     let q1 = [numero_1*Math.pow(1, 2)/3, numero_1*(-2)*1, numero_1*(8/3)]
-    let q2 = [numero_2*Math.pow(1, 2)/6, numero_2*(-1/2) , numero_2*(1/3)]
+    let q2 = [numero_2*Math.pow(1, 2)*(-1/2), numero_2*(5/2) , numero_2*(-2)]
     let q3 = [numero_3*Math.pow(1, 2)/6, numero_3*(-1/2)*1, numero_3*(1/3)]
+    console.log(numero_1,numero_2,numero_3)
 
     let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
 

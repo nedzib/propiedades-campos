@@ -342,6 +342,7 @@ export class ParticipanteComponent {
   }
 
   recuperar_claves() {
+    // aproximar c a entero para 124
     let numero_1 = Math.pow(this.valor_a + this.valor_c, 2)
     let numero_2 = Math.pow(this.valor_b + this.valor_c, 2)
 

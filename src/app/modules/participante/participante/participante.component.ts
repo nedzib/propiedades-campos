@@ -185,9 +185,10 @@ export class ParticipanteComponent {
     let q1 = [numero_1*Math.pow(1, 2)/2, numero_1*(-5/2)*1, numero_1*3]
     let q2 = [numero_2*Math.pow(1, 2)*-1, numero_2*4*1 , numero_2*-3]
     let q3 = [numero_3*Math.pow(1, 2)/2, numero_3*(-3/2)*1, numero_3*1]
-    console.log(numero_1,numero_2,numero_3)
+    
 
     let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
+    console.log("valores de a,b y c"+ q4)
 
     this.valor_a = q4[0]
     this.valor_b = q4[1]
@@ -201,6 +202,7 @@ export class ParticipanteComponent {
     console.log(numero_1,numero_2,numero_3)
 
     let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
+    console.log("valores de a,b y c"+ q4)
 
     this.valor_a = q4[0]
     this.valor_b = q4[1]

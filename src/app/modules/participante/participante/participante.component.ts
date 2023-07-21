@@ -141,6 +141,8 @@ export class ParticipanteComponent {
       operacion += element[0].split('_')[1]
     })
     this.seleccion_operacion(operacion, numeros_entrada[0][1], numeros_entrada[1][1], numeros_entrada[2][1])
+    this.redondear()
+    console.log(this.valor_a, this.valor_b, this.valor_c)
   }
 
 
@@ -188,7 +190,7 @@ export class ParticipanteComponent {
     
 
     let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
-    console.log("valores de a,b y c"+ q4)
+    
 
     this.valor_a = q4[0]
     this.valor_b = q4[1]
@@ -202,11 +204,13 @@ export class ParticipanteComponent {
     console.log(numero_1,numero_2,numero_3)
 
     let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
-    console.log("valores de a,b y c"+ q4)
+    
 
     this.valor_a = q4[0]
     this.valor_b = q4[1]
     this.valor_c = q4[2]
+
+    
   }
 
   operacion_125(numero_1: number, numero_2: number, numero_3: number) {
@@ -215,6 +219,7 @@ export class ParticipanteComponent {
     let q3 = [numero_3*Math.pow(1, 2)/12, numero_3*(-1/4)*1, numero_3*(1/6)]
 
     let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
+    console.log("valores de a,b y c "+ q4)
 
     this.valor_a = q4[0]
     this.valor_b = q4[1]
@@ -227,6 +232,7 @@ export class ParticipanteComponent {
     let q3 = [numero_3*Math.pow(1, 2)/3, numero_3*(-4/3)*1, numero_3*1]
 
     let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
+    console.log("valores de a,b y c "+ q4)
 
     this.valor_a = q4[0]
     this.valor_b = q4[1]
@@ -275,6 +281,7 @@ export class ParticipanteComponent {
     let q3 = [numero_3*Math.pow(1, 2)/6, numero_3*(-5/6)*1, numero_3*1]
 
     let q4 = q1.map((value, index) => value + q2[index] + q3[index]);
+    console.log("valores de a,b y c "+ q4)
 
     this.valor_a = q4[0]
     this.valor_b = q4[1]
@@ -353,6 +360,12 @@ export class ParticipanteComponent {
   hashString(str: number): string {
     const sha256 = require('crypto-js/sha256');
     return sha256(str.toString()).toString();
+  }
+
+  redondear(){
+    this.valor_a= Math.round(this.valor_a);
+    this.valor_b= Math.round(this.valor_b);
+    this.valor_c= Math.round(this.valor_c);
   }
 
 }

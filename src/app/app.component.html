@@ -1,3 +1,181 @@
-<app-nav></app-nav>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<div class="all-container">
+    <div class="inputs-container">
+        <fieldset>
+            <legend>Digite al menos 4</legend>
+            <form [formGroup]="valuesForm" (ngSubmit)="submit()">
+                <div class="all-inputs">
+                    <div>
+                        <label for="alpha">α:</label>
+                        <input type="number" step="any" id="alpha" name="alpha" formControlName="alpha">
+
+                        <label for="f">ƒ:</label>
+                        <input type="number" step="any" id="f" name="f" formControlName="f">
+
+                        <label for="miu">μ<sub>r</sub>:</label>
+                        <input type="number" step="any" id="miu" name="miu" formControlName="miu">
+                    </div>
+
+                    <div style="margin-left: 1rem;">
+
+                        <label for="beta">β:</label>
+                        <input type="number" step="any" id="beta" name="beta" formControlName="beta">
+
+                        <label for="sigma">σ:</label>
+                        <input type="number" step="any" id="sigma" name="sigma" formControlName="sigma">
+
+                        <label for="epsilon">ε<sub>r</sub>:</label>
+                        <input type="number" step="any" id="epsilon" name="epsilon" formControlName="epsilon">
+                    </div>
+                </div>
+
+                <br>
+
+                <button class="btn btn-default btn-block" type="submit">Calcular</button>
+            </form>
+        </fieldset>
+    </div>
+
+    <div class="datos-container">
+        <fieldset>
+            <legend>Resultados</legend>
+            <fieldset>
+                <legend>Despejes</legend>
+                <fieldset>
+                    <legend>Despeje 1:</legend>
+                    <div [equationEditorMath]="despeje_1_formula" class="bg-light rounded-1 p-3 border-light"></div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Despeje 2:</legend>
+                    <div [equationEditorMath]="despeje_2_formula" class="bg-light rounded-1 p-3 border-light"></div>
+                </fieldset>
+            </fieldset>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dato</th>
+                        <th>Formula</th>
+                        <th>Valor</th>
+                        <th>Interpretación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr>
+                        <th>α</th>
+                        <td></td>
+                        <td>9,260,000</td>
+                        <td>Constante de atenuación</td>
+                    </tr>
+                    <tr>
+                        <th>β</th>
+                        <td></td>
+                        <td>9,260,000</td>
+                        <td>Constante de fase</td>
+                    </tr>
+                    <tr>
+                        <th>ƒ</th>
+                        <td></td>
+                        <td>9,260,000</td>
+                        <td>Frecuencia</td>
+                    </tr>
+                    <tr>
+                        <th>σ</th>
+                        <td></td>
+                        <td>9,260,000</td>
+                        <td>Conductividad</td>
+                    </tr>
+                    <tr>
+                        <th>μ<sub>r</sub></th>
+                        <td></td>
+                        <td>9,260,000</td>
+                        <td>Permeabilidad Relativa</td>
+                    </tr>
+                    <tr>
+                        <th>ε<sub>r</sub></th>
+                        <td></td>
+                        <td>9,260,000</td>
+                        <td>Permitivilidad Relativa</td>
+                    </tr> -->
+                    <tr>
+                        <th>ω</th>
+                        <td>
+                            <div [equationEditorMath]="w_formula" class="bg-light rounded-1 p-3 border-light"></div>
+                        </td>
+                        <td>{{this.w}}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>τ</th>
+                        <td>
+                            <div [equationEditorMath]="t_formula" class="bg-light rounded-1 p-3 border-light"></div>
+                        </td>
+                        <td>{{this.t}}</td>
+                        <td>Periodo</td>
+                    </tr>
+                    <tr>
+                        <th>λ</th>
+                        <td>
+                            <div [equationEditorMath]="lamda_formula" class="bg-light rounded-1 p-3 border-light"></div>
+                        </td>
+                        <td>{{this.lamda}}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>η</th>
+                        <td>
+                            <div [equationEditorMath]="eta_formula" class="bg-light rounded-1 p-3 border-light"></div>
+                        </td>
+                        <td>{{this.eta}}</td>
+                        <td>Impedancia intrinseca del medio</td>
+                    </tr>
+                    <tr>
+                        <th>|η|</th>
+                        <td>
+                            <div [equationEditorMath]="norm_eta_formula" class="bg-light rounded-1 p-3 border-light">
+                            </div>
+                        </td>
+                        <td>{{this.norm_eta}}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>θ<sub>η</sub></th>
+                        <td>
+                            <div [equationEditorMath]="angle_eta_formula" class="bg-light rounded-1 p-3 border-light">
+                            </div>
+                        </td>
+                        <td>{{this.angle_eta}}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>δ</th>
+                        <td>
+                            <div [equationEditorMath]="delta_formula" class="bg-light rounded-1 p-3 border-light"></div>
+                        </td>
+                        <td>{{this.delta}}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>V<sub>ph</sub></th>
+                        <td>
+                            <div [equationEditorMath]="v_phase_formula" class="bg-light rounded-1 p-3 border-light">
+                            </div>
+                        </td>
+                        <td>{{this.v_phase}}</td>
+                        <td>Velocidad de Fase</td>
+                    </tr>
+                    <tr>
+                        <th>tdp</th>
+                        <td>
+                            <div [equationEditorMath]="tdp_formula" class="bg-light rounded-1 p-3 border-light"></div>
+                        </td>
+                        <td>{{this.tdp}}</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </div>
+
+
+
+</div>

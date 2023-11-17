@@ -32,9 +32,8 @@ export class AppComponent {
   v_phase = 0
   tdp = 0
 
-  epsilon_0 = 8.72665e-11
-  miu_0 = 1.256637e-6
-
+  epsilon_0 = Math.pow(10, -9) / (36 * Math.PI)
+  miu_0 = 1.256637061e-6
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -43,7 +42,7 @@ export class AppComponent {
     beta: 3.111,
     epsilon: null,
     miu: 0.995575,
-    f: 103900000,
+    f: 103.9e6,
     sigma: null,
   });
 

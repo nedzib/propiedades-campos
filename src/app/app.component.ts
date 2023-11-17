@@ -80,7 +80,7 @@ export class AppComponent {
       this.delta = 1 / alpha
       this.v_phase = this.w / beta
 
-      let epsilon_completo = (2 * alpha * alpha) / ((this.w * this.w * miu) * (Math.sqrt(1 + (this.tdp * this.tdp)) - 1))
+      let epsilon_completo = (2 * alpha * alpha) / ((this.w * this.w * miu * this.miu_0) * (Math.sqrt(1 + (this.tdp * this.tdp)) - 1))
       this.despeje_1_formula = '{\\epsilon = \\frac{2\\alpha^2}{\\omega^2\\mu(\\sqrt{1+tdp^2}-1)}} = ' + epsilon_completo +
         ' \\\\ \\frac{\\epsilon}{\\epsilon_{0}} = \\epsilon_{r} =' + epsilon_completo / this.epsilon_0
       let calculo_sigma = this.w * epsilon_completo * this.tdp
@@ -99,4 +99,5 @@ export class AppComponent {
     this.norm_eta = Math.sqrt(miu / epsilon_completo) / Math.pow(1 + Math.pow(calculo_sigma / (this.w * epsilon_completo), 2), 1 / 4)
     this.angle_eta = Math.atan(calculo_sigma / (this.w * epsilon_completo)) / 2
   }
+
 }

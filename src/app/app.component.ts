@@ -28,6 +28,7 @@ export class AppComponent {
   eta: any = 0
   norm_eta = 0
   angle_eta = 0
+  angle_eta_radians = 0
   delta = 0
   v_phase = 0
   tdp = 0
@@ -38,11 +39,11 @@ export class AppComponent {
   constructor(private formBuilder: FormBuilder) { }
 
   valuesForm = this.formBuilder.group({
-    alpha: 2.5,
-    beta: 3.111,
+    alpha: 3.5,
+    beta: 7.2,
     epsilon: null,
-    miu: 0.995575,
-    f: 103.9e6,
+    miu: 1.2,
+    f: 180.709e6,
     sigma: null,
   });
 
@@ -86,17 +87,18 @@ export class AppComponent {
       this.despeje_2_formula = ' \\\\ \\sigma = \\omega*\\epsilon*(tdp) = ' + calculo_sigma
 
       // Calculamos finales
-      this.calcular_valores_eta(calculo_sigma, epsilon_completo, miu)
+      this.calcular_valores_eta(calculo_sigma, epsilon_completo, miu * this.miu_0)
     }
   }
 
-  calcular_valores_eta(calculo_sigma: number, epsilon_completo: number, miu: number) {
+  calcular_valores_eta(sigma: number, epsilon_completo: number, miu: number) {
     const jw = math.multiply(math.complex('i'), this.w)
-    const jwe = math.add(calculo_sigma, math.multiply(math.complex('i'), math.multiply(this.w, epsilon_completo)))
+    const jwe = math.add(sigma, math.multiply(math.complex('i'), math.multiply(this.w, epsilon_completo)))
     const added = math.divide(jw, jwe)
     this.eta = math.sqrt(added as math.Complex).toString()
-    this.norm_eta = Math.sqrt(miu / epsilon_completo) / Math.pow(1 + Math.pow(calculo_sigma / (this.w * epsilon_completo), 2), 1 / 4)
-    this.angle_eta = Math.atan(calculo_sigma / (this.w * epsilon_completo)) / 2
+    this.norm_eta = Math.sqrt(miu / epsilon_completo) / Math.pow(1 + Math.pow(sigma / (this.w * epsilon_completo), 2), 1 / 4)
+    this.angle_eta_radians = Math.atan(sigma / (this.w * epsilon_completo)) / 2
+    this.angle_eta = this.angle_eta_radians * 180 / Math.PI
   }
 
 }

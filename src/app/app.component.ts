@@ -13,7 +13,7 @@ export class AppComponent {
   w_formula = '2\\pi f'
   t_formula = '\\frac{1}{f}'
   lamda_formula = '\\frac{2\\pi}{\\beta}'
-  eta_formula = '\\sqrt{\\frac{j\\omega}{\\sigma+j\\omega\\epsilon}}'
+  eta_formula = '\\sqrt{\\frac{j\\omega\\mu}{\\sigma+j\\omega\\epsilon}}'
   norm_eta_formula = '\\frac{\\sqrt{\\frac{\\mu}{\\epsilon}}}{[1+(\\frac{\\sigma}{\\omega\\epsilon})^2]^\\frac{1}{4}}'
   angle_eta_formula = '\\frac{1}{2}\\tan^-1{(\\frac{\\sigma}{\\omega\\epsilon})}'
   delta_formula = '\\frac{1}{\\alpha}'
@@ -92,7 +92,8 @@ export class AppComponent {
   }
 
   calcular_valores_eta(sigma: number, epsilon_completo: number, miu: number) {
-    const jw = math.multiply(math.complex('i'), this.w)
+    let jw = math.multiply(math.complex('i'), this.w)
+    jw = math.multiply(jw, miu)
     const jwe = math.add(sigma, math.multiply(math.complex('i'), math.multiply(this.w, epsilon_completo)))
     const added = math.divide(jw, jwe)
     this.eta = math.sqrt(added as math.Complex).toString()

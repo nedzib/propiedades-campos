@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-ng deploy --base-href=/propiedades-campos
+ng deploy --base-href=/propiedades-campos/

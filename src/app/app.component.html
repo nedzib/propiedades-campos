@@ -1,7 +1,7 @@
 <div class="all-container">
     <div class="inputs-container">
         <fieldset>
-            <legend>Digite al menos 4</legend>
+            <legend>Digite 4 propiedades</legend>
             <form [formGroup]="valuesForm" (ngSubmit)="submit()">
                 <div class="all-inputs">
                     <div>
@@ -27,12 +27,48 @@
                         <input type="number" step="any" id="epsilon" name="epsilon" formControlName="epsilon">
                     </div>
                 </div>
-
                 <br>
-
                 <button class="btn btn-default btn-block" type="submit">Calcular</button>
             </form>
         </fieldset>
+      <div>
+        <fieldset>
+          <legend>Casos Cubiertos</legend>
+          <table>
+            <thead>
+            <tr>
+              <th>Caso</th>
+              <th>α</th>
+              <th>β</th>
+              <th>ƒ</th>
+              <th>σ</th>
+              <th>μ<sub>r</sub></th>
+              <th>ε<sub>r</sub></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>1</td>
+              <td>X</td>
+              <td>X</td>
+              <td>X</td>
+              <td></td>
+              <td>X</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>X</td>
+              <td>X</td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+            </tr>
+            </tbody>
+          </table>
+        </fieldset>
+      </div>
     </div>
 
     <div class="datos-container">

@@ -39,40 +39,47 @@ export class AppComponent {
   constructor(private formBuilder: FormBuilder) { }
 
   valuesForm = this.formBuilder.group({
-    alpha: 3.5,
-    beta: 7.2,
-    epsilon: null,
-    miu: 1.2,
-    f: 180.709e6,
+    alpha: 3.183,
+    beta: 5.183,
+    epsilon: 2.0937671721895996,
+    miu: null,
+    f: 122.2e6,
     sigma: null,
   });
 
   submit() {
-    let epsilon = this.valuesForm.value.epsilon
-    let sigma = this.valuesForm.value.sigma
-    let alpha = this.valuesForm.value.alpha
-    let beta = this.valuesForm.value.beta
-    let f = this.valuesForm.value.f
-    let miu = this.valuesForm.value.miu
+    let epsilon : any = this.valuesForm.value.epsilon
+    let sigma : any = this.valuesForm.value.sigma
+    let alpha : any = this.valuesForm.value.alpha
+    let beta : any = this.valuesForm.value.beta
+    let f : any = this.valuesForm.value.f
+    let miu : any = this.valuesForm.value.miu
 
-    console.log(this.valuesForm.value)
+    if (miu == null && sigma == null){
+      console.log('mu y sigma vacios')
+      alpha ??= 0; beta ??= 0; epsilon ??= 0; f ??= 0
+
+      this.w = 2 * Math.PI * f
+      this.tdp = Math.sqrt(Math.pow(((alpha * alpha) + (beta * beta)) / ((beta * beta) - (alpha * alpha)), 2) - 1)
+      this.lamda = 2 * Math.PI / beta
+      this.t = 1 / f
+      this.delta = 1 / alpha
+      this.v_phase = this.w / beta
+
+      epsilon = epsilon * this.epsilon_0
+      let calculo_sigma = this.w * epsilon * this.tdp
+      this.despeje_1_formula = ' \\\\  \\sigma = \\omega*\\epsilon*(tdp)' +
+        '\\\\ \\sigma = \\omega*\\epsilon* \\sqrt{(\\frac{\\alpha^2+\\beta^2}{\\beta^2-\\alpha^2})^2-1} = ' + calculo_sigma
+      let calculo_mu = (2 * alpha * alpha) / ((this.w * this.w * epsilon) * (Math.sqrt(1 + (this.tdp * this.tdp)) - 1))
+      this.despeje_2_formula = '\\mu = \\frac{2 \\alpha^2}{\\epsilon\\omega^2[\\sqrt{1+(\\frac{\\sigma}{\\omega\\epsilon})^2}-1]} = ' + calculo_mu +
+        '\\\\ \\mu_{r} = \\frac{\\mu}{\\mu_{0}} = ' + calculo_mu / this.miu_0
+      this.calcular_valores_eta(calculo_sigma, epsilon, calculo_mu)
+    }
 
     if (epsilon == null && sigma == null) {
       console.log('epsilon y sigma vacios')
-      if (alpha == null) {
-        alpha = 0
-      }
-      if (beta == null) {
-        beta = 0
-      }
-      if (miu == null) {
-        miu = 0
-      }
-      if (f == null) {
-        f = 0
-      }
+      alpha ??= 0; beta ??= 0; miu ??= 0; f ??= 0
 
-      // Calculamos conocidos
       this.w = 2 * Math.PI * f
       this.tdp = Math.sqrt(Math.pow(((alpha * alpha) + (beta * beta)) / ((beta * beta) - (alpha * alpha)), 2) - 1)
       this.lamda = 2 * Math.PI / beta
@@ -85,20 +92,18 @@ export class AppComponent {
         ' \\\\ \\frac{\\epsilon}{\\epsilon_{0}} = \\epsilon_{r} =' + epsilon_completo / this.epsilon_0
       let calculo_sigma = this.w * epsilon_completo * this.tdp
       this.despeje_2_formula = ' \\\\ \\sigma = \\omega*\\epsilon*(tdp) = ' + calculo_sigma
-
-      // Calculamos finales
       this.calcular_valores_eta(calculo_sigma, epsilon_completo, miu * this.miu_0)
     }
   }
 
-  calcular_valores_eta(sigma: number, epsilon_completo: number, miu: number) {
+  calcular_valores_eta(sigma: number, epsilon: number, miu: number) {
     let jw = math.multiply(math.complex('i'), this.w)
     jw = math.multiply(jw, miu)
-    const jwe = math.add(sigma, math.multiply(math.complex('i'), math.multiply(this.w, epsilon_completo)))
+    const jwe = math.add(sigma, math.multiply(math.complex('i'), math.multiply(this.w, epsilon)))
     const added = math.divide(jw, jwe)
     this.eta = math.sqrt(added as math.Complex).toString()
-    this.norm_eta = Math.sqrt(miu / epsilon_completo) / Math.pow(1 + Math.pow(sigma / (this.w * epsilon_completo), 2), 1 / 4)
-    this.angle_eta_radians = Math.atan(sigma / (this.w * epsilon_completo)) / 2
+    this.norm_eta = Math.sqrt(miu / epsilon) / Math.pow(1 + Math.pow(sigma / (this.w * epsilon), 2), 1 / 4)
+    this.angle_eta_radians = Math.atan(sigma / (this.w * epsilon)) / 2
     this.angle_eta = this.angle_eta_radians * 180 / Math.PI
   }
 

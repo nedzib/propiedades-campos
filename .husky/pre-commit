@@ -2,3 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 ng deploy --base-href=/propiedades-campos/
+git push

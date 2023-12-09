@@ -39,25 +39,93 @@ export class AppComponent {
   constructor(private formBuilder: FormBuilder) { }
 
   valuesForm = this.formBuilder.group({
-    alpha: 3.183,
+    alpha: null,
     beta: 5.183,
-    epsilon: 2.0937671721895996,
-    miu: null,
-    f: 122.2e6,
-    sigma: null,
+    epsilon: null,
+    miu: 1.22,
+    f: 122200000,
+    sigma: 0.028030256653737033,
   });
 
   submit() {
-    let epsilon : any = this.valuesForm.value.epsilon
+    let epsilon_r : any = this.valuesForm.value.epsilon
     let sigma : any = this.valuesForm.value.sigma
     let alpha : any = this.valuesForm.value.alpha
     let beta : any = this.valuesForm.value.beta
     let f : any = this.valuesForm.value.f
-    let miu : any = this.valuesForm.value.miu
+    let mu_r : any = this.valuesForm.value.miu
 
-    if (miu == null && sigma == null){
+    if (alpha == null && epsilon_r == null){
+      console.log('alpha y epsilon vacios')
+      beta ??= 0; sigma ??= 0; mu_r ??= 0; f ??= 0
+
+      this.w = 2 * Math.PI * f
+
+      this.t = 1 / f
+
+      let mu = mu_r * this.miu_0
+
+      let calculo_epsilon = (((4*Math.pow(beta, 4)/(Math.pow(this.w, 4)*Math.pow(mu, 2)))-(Math.pow(sigma, 2)/Math.pow(this.w, 2)))*Math.pow(this.w, 2)*mu)/(4*Math.pow(beta, 2))
+      this.despeje_1_formula = '\\epsilon = \\frac{(\\frac{4\\beta^4}{\\omega^4\\mu^2}-\\frac{\\sigma^2}{\\omega^2})\\omega^2\\mu}{4\\beta^2} = ' + calculo_epsilon +
+        ' \\\\ \\frac{\\epsilon}{\\epsilon_{0}} = \\epsilon_{r} =' + calculo_epsilon / this.epsilon_0
+
+      epsilon_r = calculo_epsilon / this.epsilon_0
+      this.tdp = sigma / (this.w * this.epsilon_0 * epsilon_r)
+
+      let calculo_alpha = this.w * Math.sqrt((mu_r * this.miu_0 * epsilon_r * this.epsilon_0)/2 * (Math.sqrt(1 + (this.tdp * this.tdp)) - 1))
+      this.despeje_2_formula = '\\alpha = \\omega\\sqrt{\\frac{\\mu\\epsilon}{2}(\\sqrt{1+(tdp)^2}-1)} = ' + calculo_alpha
+
+      this.lamda = 2 * Math.PI / beta
+      this.delta = 1 / calculo_alpha
+      this.v_phase = this.w / beta
+      this.calcular_valores_eta(sigma, calculo_epsilon, mu_r * this.miu_0)
+    }
+
+    if (alpha == null && mu_r == null){
+      console.log('alpha y mu vacios')
+      epsilon_r ??= 0; beta ??= 0; sigma ??= 0; f ??= 0
+
+      this.w = 2 * Math.PI * f
+      this.tdp = sigma / (this.w * this.epsilon_0 * epsilon_r)
+      this.t = 1 / f
+
+      let calculo_mu = (2 * beta * beta) / ((this.w * this.w * this.epsilon_0 * epsilon_r) * (Math.sqrt(1 + (this.tdp * this.tdp)) + 1))
+      this.despeje_1_formula = '\\mu = \\frac{2 \\beta^2}{\\omega^2[\\sqrt{1+(\\frac{\\sigma}{\\omega\\epsilon})^2}+1]} = ' + calculo_mu +
+        '\\\\ \\mu_{r} = \\frac{\\mu}{\\mu_{0}} = ' + calculo_mu / this.miu_0
+
+      mu_r = calculo_mu / this.miu_0
+
+      let calculo_alpha = this.w * Math.sqrt((mu_r * this.miu_0 * epsilon_r * this.epsilon_0)/2 * (Math.sqrt(1 + (this.tdp * this.tdp)) - 1))
+      this.despeje_2_formula = '\\alpha = \\omega\\sqrt{\\frac{\\mu\\epsilon}{2}(\\sqrt{1+(tdp)^2}-1)} = ' + calculo_alpha
+
+      this.lamda = 2 * Math.PI / beta
+      this.delta = 1 / calculo_alpha
+      this.v_phase = this.w / beta
+      this.calcular_valores_eta(sigma, epsilon_r * this.epsilon_0, calculo_mu)
+    }
+
+    if (alpha == null && beta == null){
+      console.log('alpha y beta vacios')
+      epsilon_r ??= 0; sigma ??= 0; mu_r ??= 0; f ??= 0
+
+      this.w = 2 * Math.PI * f
+      this.tdp = sigma / (this.w * this.epsilon_0 * epsilon_r)
+      this.t = 1 / f
+
+      let calculo_alpha = this.w * Math.sqrt((mu_r * this.miu_0 * epsilon_r * this.epsilon_0)/2 * (Math.sqrt(1 + (this.tdp * this.tdp)) - 1))
+      this.despeje_1_formula = '\\alpha = \\omega\\sqrt{\\frac{\\mu\\epsilon}{2}(\\sqrt{1+(tdp)^2}-1)} = ' + calculo_alpha
+      let calculo_beta = this.w * Math.sqrt((mu_r * this.miu_0 * epsilon_r * this.epsilon_0)/2 * (Math.sqrt(1 + (this.tdp * this.tdp)) + 1))
+      this.despeje_2_formula = '\\beta = \\omega\\sqrt{\\frac{\\mu\\epsilon}{2}(\\sqrt{1+(tdp)^2}+1)} = ' + calculo_beta
+
+      this.lamda = 2 * Math.PI / calculo_beta
+      this.delta = 1 / calculo_alpha
+      this.v_phase = this.w / calculo_beta
+      this.calcular_valores_eta(sigma, epsilon_r * this.epsilon_0, mu_r * this.miu_0)
+    }
+
+    if (mu_r == null && sigma == null){
       console.log('mu y sigma vacios')
-      alpha ??= 0; beta ??= 0; epsilon ??= 0; f ??= 0
+      alpha ??= 0; beta ??= 0; epsilon_r ??= 0; f ??= 0
 
       this.w = 2 * Math.PI * f
       this.tdp = Math.sqrt(Math.pow(((alpha * alpha) + (beta * beta)) / ((beta * beta) - (alpha * alpha)), 2) - 1)
@@ -66,7 +134,7 @@ export class AppComponent {
       this.delta = 1 / alpha
       this.v_phase = this.w / beta
 
-      epsilon = epsilon * this.epsilon_0
+      let epsilon = epsilon_r * this.epsilon_0
       let calculo_sigma = this.w * epsilon * this.tdp
       this.despeje_1_formula = ' \\\\  \\sigma = \\omega*\\epsilon*(tdp)' +
         '\\\\ \\sigma = \\omega*\\epsilon* \\sqrt{(\\frac{\\alpha^2+\\beta^2}{\\beta^2-\\alpha^2})^2-1} = ' + calculo_sigma
@@ -76,9 +144,9 @@ export class AppComponent {
       this.calcular_valores_eta(calculo_sigma, epsilon, calculo_mu)
     }
 
-    if (epsilon == null && sigma == null) {
+    if (epsilon_r == null && sigma == null) {
       console.log('epsilon y sigma vacios')
-      alpha ??= 0; beta ??= 0; miu ??= 0; f ??= 0
+      alpha ??= 0; beta ??= 0; mu_r ??= 0; f ??= 0
 
       this.w = 2 * Math.PI * f
       this.tdp = Math.sqrt(Math.pow(((alpha * alpha) + (beta * beta)) / ((beta * beta) - (alpha * alpha)), 2) - 1)
@@ -87,12 +155,12 @@ export class AppComponent {
       this.delta = 1 / alpha
       this.v_phase = this.w / beta
 
-      let epsilon_completo = (2 * alpha * alpha) / ((this.w * this.w * miu * this.miu_0) * (Math.sqrt(1 + (this.tdp * this.tdp)) - 1))
-      this.despeje_1_formula = '{\\epsilon = \\frac{2\\alpha^2}{\\omega^2\\mu(\\sqrt{1+tdp^2}-1)}} = ' + epsilon_completo +
-        ' \\\\ \\frac{\\epsilon}{\\epsilon_{0}} = \\epsilon_{r} =' + epsilon_completo / this.epsilon_0
-      let calculo_sigma = this.w * epsilon_completo * this.tdp
+      let epsilon = (2 * alpha * alpha) / ((this.w * this.w * mu_r * this.miu_0) * (Math.sqrt(1 + (this.tdp * this.tdp)) - 1))
+      this.despeje_1_formula = '{\\epsilon = \\frac{2\\alpha^2}{\\omega^2\\mu(\\sqrt{1+tdp^2}-1)}} = ' + epsilon +
+        ' \\\\ \\frac{\\epsilon}{\\epsilon_{0}} = \\epsilon_{r} =' + epsilon / this.epsilon_0
+      let calculo_sigma = this.w * epsilon * this.tdp
       this.despeje_2_formula = ' \\\\ \\sigma = \\omega*\\epsilon*(tdp) = ' + calculo_sigma
-      this.calcular_valores_eta(calculo_sigma, epsilon_completo, miu * this.miu_0)
+      this.calcular_valores_eta(calculo_sigma, epsilon, mu_r * this.miu_0)
     }
   }
 

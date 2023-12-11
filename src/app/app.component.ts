@@ -67,8 +67,23 @@ export class AppComponent {
     }
 
     if (f != null){
-      this.w = 2 * Math.PI * f
-      this.t = 1 / f
+      this.calcular_dependientes_frecuencia(f)
+    }
+
+    if (mu_r == null && epsilon_r == null){
+      alpha ??= 0; beta ??= 0; sigma ??= 0; f ??= 0
+
+      this.tdp = Math.sqrt(Math.pow(((alpha * alpha) + (beta * beta)) / ((beta * beta) - (alpha * alpha)), 2) - 1)
+
+      let calculo_epsilon = Math.sqrt((Math.pow(sigma, 2))/((Math.pow(((alpha * alpha) + (beta * beta)) / ((beta * beta) - (alpha * alpha)), 2) - 1)*Math.pow(this.w, 2)))
+      this.despeje_1_formula = '\\epsilon = \\sqrt{\\frac{\\sigma^2}{[(\\frac{\\beta^2+\\alpha^2}{\\beta^2-\\alpha^2})^2-1]\\omega^2}} = ' + calculo_epsilon +
+        ' \\\\ \\frac{\\epsilon}{\\epsilon_{0}} = \\epsilon_{r} =' + calculo_epsilon / this.epsilon_0
+      let calculo_mu = Math.sqrt((4*Math.pow(alpha, 2)*Math.pow(beta, 2)*(Math.pow(alpha, 2)+Math.pow(beta, 2)))/(Math.pow(sigma, 2)*Math.pow(this.w, 2)*(Math.pow(alpha, 2)+Math.pow(beta, 2)+Math.pow(sigma, 2))))
+      this.despeje_2_formula = '\\mu = \\sqrt{\\frac{4\\alpha^2\\beta^2(\\alpha^2+\\beta^2)}{\\sigma^2\\omega^2(\\alpha^2+\\beta^2)}} = ' + calculo_mu +
+        '\\\\ \\mu_{r} = \\frac{\\mu}{\\mu_{0}} = ' + calculo_mu / this.miu_0
+
+      this.calcular_lamda_delta_v_phase(beta, alpha, this.w)
+      this.calcular_valores_eta(sigma, calculo_epsilon, calculo_mu)
     }
 
     if (beta == null && epsilon_r == null){
@@ -256,6 +271,11 @@ export class AppComponent {
     this.lamda = 2 * Math.PI / beta
     this.delta = 1 / alpha
     this.v_phase = omega / beta
+  }
+
+  calcular_dependientes_frecuencia(frecuencia: number){
+    this.w = 2 * Math.PI * frecuencia
+    this.t = 1 / frecuencia
   }
 
 }

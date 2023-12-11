@@ -83,44 +83,38 @@ export class AppComponent {
         '\\\\ \\mu_{r} = \\frac{\\mu}{\\mu_{0}} = ' + mu / this.mu_0
     }
 
-    if (beta == null && epsilon_r == null){
-      beta ??= 0; sigma ??= 0; mu_r ??= 0; f ??= 0
+    if (beta == null){
 
-      epsilon = (((Math.pow(sigma, 2)/Math.pow(this.w, 2))-(4*Math.pow(alpha, 4)/(Math.pow(this.w, 4)*Math.pow(mu, 2))))*Math.pow(this.w, 2)*mu)/(4*Math.pow(alpha, 2))
-      this.despeje_1_formula = '\\epsilon = \\frac{(\\frac{\\sigma^2}{\\omega^2}-\\frac{4\\alpha^4}{\\omega^4\\mu^2})\\omega^2\\mu}{4\\alpha^2} = ' + epsilon +
-        ' \\\\ \\frac{\\epsilon}{\\epsilon_{0}} = \\epsilon_{r} =' + epsilon / this.epsilon_0
+      if (f == null){
+        this.w = Math.sqrt((4*Math.pow(alpha, 4))/(((Math.pow(sigma/epsilon, 2))-(4*Math.pow(alpha, 2)/(mu*epsilon)))*Math.pow(mu,2)*Math.pow(epsilon,2)))
+        this.despeje_1_formula = '\\omega = \\sqrt{\\frac{4\\alpha^2\\epsilon^2\\mu^2}{\\sigma^2(\\alpha^2+\\sigma^2)}} = ' + this.w +
+          '\\\\ f = \\frac{\\omega}{2\\pi} = ' + this.w / (2 * Math.PI)
+      }
 
-      epsilon_r = epsilon / this.epsilon_0
-      this.tdp = sigma / (this.w * this.epsilon_0 * epsilon_r)
+      if (epsilon_r == null){
+        epsilon = (((Math.pow(sigma, 2)/Math.pow(this.w, 2))-(4*Math.pow(alpha, 4)/(Math.pow(this.w, 4)*Math.pow(mu, 2))))*Math.pow(this.w, 2)*mu)/(4*Math.pow(alpha, 2))
+        this.despeje_1_formula = '\\epsilon = \\frac{(\\frac{\\sigma^2}{\\omega^2}-\\frac{4\\alpha^4}{\\omega^4\\mu^2})\\omega^2\\mu}{4\\alpha^2} = ' + epsilon +
+          ' \\\\ \\frac{\\epsilon}{\\epsilon_{0}} = \\epsilon_{r} =' + epsilon / this.epsilon_0
+      }
 
-      let solucion_beta = this.calcular_alpha_beta('beta', mu, epsilon, this.tdp)
-      this.despeje_2_formula = solucion_beta.despeje
-      beta = solucion_beta.calculo
-    }
-
-    if (beta == null && mu_r == null){
-      epsilon_r ??= 0; alpha ??= 0; sigma ??= 0; f ??= 0
-
-      this.tdp = sigma / (this.w * epsilon)
-
-      mu = (2 * alpha * alpha) / ((this.w * this.w * this.epsilon_0 * epsilon_r) * (Math.sqrt(1 + (this.tdp * this.tdp)) - 1))
-      this.despeje_1_formula = '\\mu = \\frac{2 \\alpha^2}{\\omega^2\\epsilon[\\sqrt{1+(\\frac{\\sigma}{\\omega\\epsilon})^2}-1]} = ' + mu +
-        '\\\\ \\mu_{r} = \\frac{\\mu}{\\mu_{0}} = ' + mu / this.mu_0
-
-      mu_r = mu / this.mu_0
-
-      let solucion_beta = this.calcular_alpha_beta('beta', mu, epsilon, this.tdp)
-      this.despeje_2_formula = solucion_beta.despeje
-      beta = solucion_beta.calculo
-    }
-
-    if (beta == null && sigma == null){
-      epsilon_r ??= 0; beta ??= 0; mu_r ??= 0; f ??= 0
-
-      sigma = Math.sqrt(((4*Math.pow(alpha, 4)/(Math.pow(this.w, 4)*Math.pow(mu,2)*Math.pow(epsilon,2)))+(4*Math.pow(alpha, 2)/(Math.pow(this.w, 2)*mu*epsilon)))*Math.pow(this.w, 2)*Math.pow(epsilon,2))
-      this.despeje_1_formula = '\\sigma = \\sqrt{\\frac{4\\alpha^4}{\\omega^4\\epsilon^2\\mu^2}+\\frac{4\\alpha^2}{\\omega^2\\mu\\epsilon}\\omega^2\\epsilon^2} = ' + sigma
+      if (sigma == null){
+        sigma = Math.sqrt(((4*Math.pow(alpha, 4)/(Math.pow(this.w, 4)*Math.pow(mu,2)*Math.pow(epsilon,2)))+(4*Math.pow(alpha, 2)/(Math.pow(this.w, 2)*mu*epsilon)))*Math.pow(this.w, 2)*Math.pow(epsilon,2))
+        this.despeje_1_formula = '\\sigma = \\sqrt{\\frac{4\\alpha^4}{\\omega^4\\epsilon^2\\mu^2}+\\frac{4\\alpha^2}{\\omega^2\\mu\\epsilon}\\omega^2\\epsilon^2} = ' + sigma
+      }
 
       this.tdp = sigma / (this.w * epsilon)
+
+      if (mu_r == null){
+        mu = (2 * alpha * alpha) / ((this.w * this.w * epsilon) * (Math.sqrt(1 + (this.tdp * this.tdp)) - 1))
+        this.despeje_1_formula = '\\mu = \\frac{2 \\alpha^2}{\\omega^2\\epsilon[\\sqrt{1+(\\frac{\\sigma}{\\omega\\epsilon})^2}-1]} = ' + mu +
+          '\\\\ \\mu_{r} = \\frac{\\mu}{\\mu_{0}} = ' + mu / this.mu_0
+      }
+
+      if (alpha == null){
+        let solucion_alpha = this.calcular_alpha_beta('alpha', mu, epsilon, this.tdp)
+        this.despeje_1_formula = solucion_alpha.despeje
+        alpha = solucion_alpha.calculo
+      }
 
       let solucion_beta = this.calcular_alpha_beta('beta', mu, epsilon, this.tdp)
       this.despeje_2_formula = solucion_beta.despeje
@@ -169,21 +163,6 @@ export class AppComponent {
       let solucion_alpha = this.calcular_alpha_beta('alpha', mu, epsilon, this.tdp)
       this.despeje_2_formula = solucion_alpha.despeje
       alpha = solucion_alpha.calculo
-    }
-
-    if (alpha == null && beta == null){
-      epsilon_r ??= 0; sigma ??= 0; mu_r ??= 0; f ??= 0
-
-      this.tdp = sigma / (this.w * epsilon)
-
-      let solucion_alpha = this.calcular_alpha_beta('alpha', mu, epsilon, this.tdp)
-      this.despeje_1_formula = solucion_alpha.despeje
-
-      let solucion_beta = this.calcular_alpha_beta('beta', mu, epsilon, this.tdp)
-      this.despeje_2_formula = solucion_beta.despeje
-
-      alpha = solucion_alpha.calculo
-      beta = solucion_beta.calculo
     }
 
     if (mu_r == null && sigma == null){
